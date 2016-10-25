@@ -1,0 +1,410 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B6EFE5B0-841E-420A-BA2C-C245F6E7E72B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ADWorkerSecondLine</RootNamespace>
+    <AssemblyName>ADWorkerSecondLine</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\AD.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Converters\BooleanToStringConverter.cs" />
+    <Compile Include="Converters\DateTimeToColorConverter.cs" />
+    <Compile Include="Converters\DateTimeToStringConverter.cs" />
+    <Compile Include="Converters\MoveUserTreeBtEnableConverter.cs" />
+    <Compile Include="Converters\NullToBooleanConverter.cs" />
+    <Compile Include="Converters\PathToImageSourceConverter.cs" />
+    <Compile Include="Converters\TreeSortConverter.cs" />
+    <Compile Include="CustomEventArgs\MessageEventArgs.cs" />
+    <Compile Include="DataProvider\AsyncDataProvider.cs" />
+    <Compile Include="DialogWindows\AddComputersToGroup.xaml.cs">
+      <DependentUpon>AddComputersToGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\AddUsersToGroup.xaml.cs">
+      <DependentUpon>AddUsersToGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\AddUserToGroups.xaml.cs">
+      <DependentUpon>AddUserToGroups.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\EditDateTimeData.xaml.cs">
+      <DependentUpon>EditDateTimeData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\EditTextData.xaml.cs">
+      <DependentUpon>EditTextData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\FindFreeNameInAD.xaml.cs">
+      <DependentUpon>FindFreeNameInAD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\GetCompInfoFromNet.xaml.cs">
+      <DependentUpon>GetCompInfoFromNet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\LoadListUsers.xaml.cs">
+      <DependentUpon>LoadListUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\MoveUserInAD.xaml.cs">
+      <DependentUpon>MoveUserInAD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\SelectUser.xaml.cs">
+      <DependentUpon>SelectUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\TranslitToLAT.xaml.cs">
+      <DependentUpon>TranslitToLAT.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DialogWindows\ViewAndEditUserGroups.xaml.cs">
+      <DependentUpon>ViewAndEditUserGroups.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Computer.cs" />
+    <Compile Include="Model\DomainTreeItem.cs" />
+    <Compile Include="Model\Group.cs" />
+    <Compile Include="Model\PluginData.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="UISearchTextBox\ListBoxEx.cs" />
+    <Compile Include="UISearchTextBox\SearchTextBox.cs" />
+    <Compile Include="UIWatermarkedTextBox\WatermarkedTextBox.cs" />
+    <Compile Include="Utils\TextBoxInputNumber.cs" />
+    <Page Include="DataProvider\Templates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\AddComputersToGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\AddUsersToGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\AddUserToGroups.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\EditDateTimeData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\EditTextData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\FindFreeNameInAD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\GetCompInfoFromNet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\LoadListUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\MoveUserInAD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\SelectUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\TranslitToLAT.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DialogWindows\ViewAndEditUserGroups.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="UISearchTextBox\Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UISearchTextBox\Themes\ListBoxEx.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UIWatermarkedTextBox\Themes\Skin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="DataProvider\loading_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UISearchTextBox\Images\clear.png" />
+    <Resource Include="UISearchTextBox\Images\Key-Add.png" />
+    <Resource Include="UISearchTextBox\Images\Previous.png" />
+    <Resource Include="UISearchTextBox\Images\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AD.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.1 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\connect_established.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\connect_no.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Update.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\group.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Control\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ActiveDirectory.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ADServer.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Reset.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\unlock_user.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Replace.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\move_user.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\edit.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\selectOU.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\disable_user.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\enable_user.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\add_in_group.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\remove_from_group.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\add_user_in_group.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\remove_user_from_group.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\add.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\cancel.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\move_left.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\move_right.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\save.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\select.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\move.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\add_computer_in_group.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\add_computer_in_groups.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\remove_computer_from_group.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\remove_computer_from_groups.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\disable_computer.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\enable_computer.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\move_computer.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\remove_computer.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\computer_info.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\search_free_name.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\next.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\stop.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\search.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\translit.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\searches.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\list_load.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\group_move.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,135 @@
+﻿<Window x:Class="ADWorkerSecondLine.DialogWindows.LoadListUsers"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Загрузка списка пользователей"
+        Width="564"
+        Height="500"
+        Background="#FFA4A4A4"
+        KeyDown="Window_KeyDown"
+        WindowStartupLocation="CenterOwner">
+    <Grid>
+        <ScrollViewer Margin="10,74,10,62">
+            <TextBox x:Name="inputData"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap" />
+        </ScrollViewer>
+        <Button x:Name="btLoad"
+                Width="100"
+                Height="22"
+                Margin="0,0,115,35"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Click="btLoad_Click">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="16"
+                           Height="16"
+                           Margin="0,0,5,0"
+                           Source="/ADWorkerSecondLine;component/Resources/select.ico" />
+                    <TextBlock Text="Загрузить" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
+        <Button x:Name="btCheckInAD"
+                Width="120"
+                Height="22"
+                Margin="0,0,220,35"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Click="btCheckInAD_Click">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="16"
+                           Height="16"
+                           Margin="0,0,5,0"
+                           Source="/ADWorkerSecondLine;component/Resources/searches.ico" />
+                    <TextBlock Text="Проверить в АД" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
+        <Button x:Name="btTranslit"
+                Width="130"
+                Height="22"
+                Margin="0,0,345,35"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Click="btTranslit_Click">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="16"
+                           Height="16"
+                           Margin="0,0,5,0"
+                           Source="/ADWorkerSecondLine;component/Resources/translit.ico" />
+                    <TextBlock Text="Транслитерация" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
+        <Button x:Name="btClose"
+                Width="100"
+                Height="22"
+                Margin="0,0,10,35"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Click="btClose_Click">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="16"
+                           Height="16"
+                           Margin="0,0,5,0"
+                           Source="/ADWorkerSecondLine;component/Resources/cancel.ico" />
+                    <TextBlock Text="Закрыть" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
+        <GroupBox Height="59"
+                  Margin="10,10,10,0"
+                  VerticalAlignment="Top"
+                  BorderBrush="Black"
+                  Header="Выполнять проверку в АД по полю">
+            <Grid Margin="0,0,-2,-12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90*" />
+                    <ColumnDefinition Width="87*" />
+                    <ColumnDefinition Width="74*" />
+                    <ColumnDefinition Width="155*" />
+                    <ColumnDefinition Width="120*" />
+                </Grid.ColumnDefinitions>
+                <RadioButton x:Name="checkNameInAD"
+                             Height="16"
+                             Margin="10,10,10,0"
+                             VerticalAlignment="Top"
+                             Content="Имя в АД"
+                             IsChecked="True" />
+                <RadioButton x:Name="checkSurname"
+                             Grid.Column="1"
+                             Height="16"
+                             Margin="10,10,10,0"
+                             VerticalAlignment="Top"
+                             Content="Фамилия" />
+                <RadioButton x:Name="checkLogin"
+                             Grid.Column="2"
+                             Height="16"
+                             Margin="10,10,10,0"
+                             VerticalAlignment="Top"
+                             Content="Логин" />
+                <RadioButton x:Name="checkDisplayName"
+                             Grid.Column="3"
+                             Height="16"
+                             Margin="12,10,10,0"
+                             VerticalAlignment="Top"
+                             Content="Отображаемое имя" />
+                <RadioButton x:Name="checkDefault"
+                             Grid.Column="4"
+                             Height="16"
+                             Margin="10,10,10,0"
+                             VerticalAlignment="Top"
+                             Content="По умолчанью" />
+            </Grid>
+        </GroupBox>
+        <StatusBar Height="30" VerticalAlignment="Bottom">
+            <Label x:Name="statusBarText"
+                   Width="546"
+                   Content="" />
+        </StatusBar>
+    </Grid>
+</Window>

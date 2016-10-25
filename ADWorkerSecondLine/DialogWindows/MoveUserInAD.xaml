@@ -1,0 +1,97 @@
+﻿<Window x:Class="ADWorkerSecondLine.DialogWindows.MoveUserInAD"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Converters="clr-namespace:ADWorkerSecondLine.Converters"
+        xmlns:Providers="clr-namespace:ADWorkerSecondLine.DataProvider"
+        xmlns:self="clr-namespace:ADWorkerSecondLine.Model"
+        Title="Перемещение пользователя"
+        Width="370"
+        Height="511"
+        Background="#FFC1C1C1"
+        KeyDown="Window_KeyDown"
+        WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="AsyncDataSource"
+                            IsAsynchronous="True"
+                            MethodName="GetDomainOUTree"
+                            ObjectType="Providers:AsyncDataProvider" />
+        <Converters:NullToBooleanConverter x:Key="NullToBooleanConverter" />
+        <Converters:PathToImageSourceConverter x:Key="PathToImageSourceConverter" />
+        <Converters:TreeSortConverter x:Key="TreeSortConverter" />
+        <Converters:MoveUserTreeBtEnableConverter x:Key="MoveUserTreeBtEnableConverter" />
+    </Window.Resources>
+    <Grid>
+        <TreeView x:Name="DomainOUTreeView"
+                  Margin="10,10,10,37"
+                  ItemsSource="{Binding Source={StaticResource AsyncDataSource},
+                                        IsAsync=True}">
+            <TreeView.Resources>
+                <Style BasedOn="{StaticResource {x:Type TreeViewItem}}" TargetType="{x:Type TreeViewItem}">
+                    <EventSetter Event="KeyDown" Handler="DomainOUTreeViewItem_KeyDown" />
+                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                </Style>
+                <HierarchicalDataTemplate DataType="{x:Type self:DomainTreeItem}" ItemsSource="{Binding Childs, Converter={StaticResource TreeSortConverter}, ConverterParameter=Title}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="16"
+                               Height="16"
+                               Source="{Binding Image,
+                                                Converter={StaticResource PathToImageSourceConverter}}" />
+                        <TextBlock Text="{Binding Title}" />
+                        <TextBlock Margin="20,0,0,0" Text="{Binding City}" />
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.Resources>
+
+            <TreeView.Style>
+                <Style TargetType="{x:Type TreeView}">
+                    <Style.Triggers>
+                        <Trigger Property="ItemsSource" Value="{x:Null}">
+                            <Setter Property="Template" Value="{StaticResource LoadControlTemplate}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TreeView.Style>
+        </TreeView>
+        <Button x:Name="btMove"
+                Width="110"
+                Height="22"
+                Margin="0,0,115,10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Click="btMove_Click"
+                IsEnabled="{Binding ElementName=DomainOUTreeView,
+                                    Path=SelectedItem.Description,
+                                    Mode=OneWay,
+                                    UpdateSourceTrigger=PropertyChanged,
+                                    Converter={StaticResource MoveUserTreeBtEnableConverter}}">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <Image x:Name="btMove_image"
+                           Width="16"
+                           Height="16"
+                           Margin="0,0,5,0"
+                           Source="/ADWorkerSecondLine;component/Resources/move.ico" />
+                    <TextBlock x:Name="btMove_text" Text="Переместить" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
+        <Button x:Name="btCancel"
+                Width="100"
+                Height="22"
+                Margin="0,0,10,10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Click="btCancel_Click">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="16"
+                           Height="16"
+                           Margin="0,0,5,0"
+                           Source="/ADWorkerSecondLine;component/Resources/cancel.ico" />
+                    <TextBlock Text="Отмена" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
+    </Grid>
+</Window>

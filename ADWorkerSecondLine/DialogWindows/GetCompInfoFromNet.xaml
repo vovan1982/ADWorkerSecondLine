@@ -1,0 +1,112 @@
+﻿<Window x:Class="ADWorkerSecondLine.DialogWindows.GetCompInfoFromNet"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Converters="clr-namespace:ADWorkerSecondLine.Converters"
+        Title="Дополнительная информация по компьютеру"
+        Width="430"
+        Height="400"
+        Background="#FFA4A4A4"
+        Closing="Window_Closing"
+        KeyDown="Window_KeyDown"
+        WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <Converters:NullToBooleanConverter x:Key="NullToBooleanConverter" />
+    </Window.Resources>
+    <Grid>
+        <Label Width="70"
+               Margin="10,10,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               HorizontalContentAlignment="Right"
+               Content="Имя PC:" />
+        <TextBox x:Name="namePC"
+                 Height="26"
+                 Margin="85,10,10,0"
+                 VerticalAlignment="Top"
+                 IsReadOnly="True"
+                 TextWrapping="Wrap" />
+        <Label Width="70"
+               Margin="10,41,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               HorizontalContentAlignment="Right"
+               Content="IP адрес:" />
+        <TextBox x:Name="ipAdress"
+                 Height="26"
+                 Margin="85,41,10,0"
+                 VerticalAlignment="Top"
+                 IsReadOnly="True"
+                 TextWrapping="Wrap" />
+        <Label Width="70"
+               Margin="10,72,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               HorizontalContentAlignment="Right"
+               Content="Состояние:" />
+        <TextBox x:Name="state"
+                 Height="26"
+                 Margin="85,72,10,0"
+                 VerticalAlignment="Top"
+                 IsReadOnly="True"
+                 TextWrapping="Wrap" />
+        <Label Width="70"
+               Margin="10,103,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               HorizontalContentAlignment="Right"
+               Content="Модель:" />
+        <TextBox x:Name="model"
+                 Height="26"
+                 Margin="85,103,10,0"
+                 VerticalAlignment="Top"
+                 IsReadOnly="True"
+                 TextWrapping="Wrap" />
+        <Label Width="198"
+               Margin="10,134,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               HorizontalContentAlignment="Right"
+               Content="Дата и время последней загрузки:" />
+        <TextBox x:Name="upTime"
+                 Height="26"
+                 Margin="10,165,10,0"
+                 VerticalAlignment="Top"
+                 IsReadOnly="True"
+                 TextWrapping="Wrap" />
+        <Label Width="159"
+               Height="29"
+               Margin="10,196,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               HorizontalContentAlignment="Right"
+               Content="Загруженые пользователи:" />
+        <ListBox x:Name="listLoadedUsers"
+                 Margin="10,230,10,35"
+                 KeyDown="listLoadedUsers_KeyDown">
+            <ListBox.ContextMenu>
+                <ContextMenu x:Name="listLoadedUsersMenu"
+                             Background="WhiteSmoke"
+                             StaysOpen="true">
+                    <ContextMenu.BitmapEffect>
+                        <BitmapEffectGroup />
+                    </ContextMenu.BitmapEffect>
+                    <MenuItem x:Name="CopyBuffSelectUser"
+                              Click="CopyBuffSelectUser_Click"
+                              Header="Скопировать в буфер"
+                              IsEnabled="{Binding Path=PlacementTarget.SelectedItem,
+                                                  Mode=OneWay,
+                                                  UpdateSourceTrigger=PropertyChanged,
+                                                  Converter={StaticResource NullToBooleanConverter},
+                                                  RelativeSource={RelativeSource Mode=FindAncestor,
+                                                                                 AncestorType=ContextMenu}}" />
+                </ContextMenu>
+            </ListBox.ContextMenu>
+        </ListBox>
+        <StatusBar Height="30" VerticalAlignment="Bottom">
+            <TextBlock x:Name="statusText"
+                       Width="412"
+                       Height="30"
+                       TextWrapping="Wrap" />
+        </StatusBar>
+    </Grid>
+</Window>

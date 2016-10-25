@@ -1,0 +1,119 @@
+﻿<Window x:Class="ADWorkerSecondLine.DialogWindows.FindFreeNameInAD"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Behaviors="clr-namespace:ADWorkerSecondLine.Utils"
+        xmlns:UIWatermarkedTextBox="clr-namespace:ADWorkerSecondLine.UIWatermarkedTextBox"
+        Title="Поиск свободного имени компьютера в домене"
+        Width="372"
+        Height="210"
+        MinWidth="430"
+        MinHeight="210"
+        MaxWidth="430"
+        MaxHeight="210"
+        Background="#FFA4A4A4"
+        KeyDown="Window_KeyDown"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label Width="165"
+               Margin="10,10,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="Начало имени компьютера:" />
+        <UIWatermarkedTextBox:WatermarkedTextBox x:Name="startName"
+                                                 Height="26"
+                                                 Margin="175,10,10,0"
+                                                 VerticalAlignment="Top"
+                                                 KeyDown="startName_KeyDown"
+                                                 TextWrapping="Wrap"
+                                                 WatermarkText="Пример: AL-UALN" />
+        <GroupBox Height="66"
+                  Margin="10,41,10,0"
+                  VerticalAlignment="Top"
+                  Header="Диапазон поиска">
+            <Grid Margin="0,0,-2,-12">
+                <Label Margin="10,10,0,0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Content="C:" />
+                <TextBox x:Name="startFind"
+                         Width="148"
+                         Height="23"
+                         Margin="35,12,0,0"
+                         HorizontalAlignment="Left"
+                         VerticalAlignment="Top"
+                         Behaviors:TextBoxInputNumber.Mask="Integer"
+                         LostFocus="startFind_LostFocus"
+                         Text="1"
+                         TextWrapping="Wrap" />
+                <Label Margin="188,10,0,0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Content="ПО:" />
+                <TextBox x:Name="endFind"
+                         Height="23"
+                         Margin="223,12,10,0"
+                         VerticalAlignment="Top"
+                         Behaviors:TextBoxInputNumber.Mask="Integer"
+                         LostFocus="endFind_LostFocus"
+                         Text="1000"
+                         TextWrapping="Wrap" />
+            </Grid>
+        </GroupBox>
+        <Label Width="66"
+               Margin="10,112,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               Content="Результат:" />
+        <TextBox x:Name="resultName"
+                 Height="26"
+                 Margin="81,112,10,0"
+                 VerticalAlignment="Top"
+                 IsReadOnly="True"
+                 IsReadOnlyCaretVisible="True"
+                 TextWrapping="Wrap" />
+        <Button x:Name="btFind"
+                Width="95"
+                Margin="10,143,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="btFind_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Width="16"
+                       Height="16"
+                       Margin="0,0,5,0"
+                       Source="/ADWorkerSecondLine;component/Resources/search.ico" />
+                <TextBlock Text="Поиск" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="btStopFind"
+                Width="95"
+                Margin="110,143,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="btStopFind_Click"
+                IsEnabled="False">
+            <StackPanel Orientation="Horizontal">
+                <Image Width="16"
+                       Height="16"
+                       Margin="0,0,5,0"
+                       Source="/ADWorkerSecondLine;component/Resources/stop.ico" />
+                <TextBlock Text="Стоп" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="btNext"
+                Width="95"
+                Margin="210,143,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="btNext_Click"
+                IsEnabled="False">
+            <StackPanel Orientation="Horizontal">
+                <Image Width="16"
+                       Height="16"
+                       Margin="0,0,5,0"
+                       Source="/ADWorkerSecondLine;component/Resources/next.ico" />
+                <TextBlock Text="Далее" />
+            </StackPanel>
+        </Button>
+    </Grid>
+</Window>
