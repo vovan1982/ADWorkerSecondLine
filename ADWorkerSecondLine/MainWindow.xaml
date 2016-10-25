@@ -2263,7 +2263,7 @@
                    Margin="0,10,10,0"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Top"
-                   Text="Версия 4.3.0"
+                   Text="Версия 4.3.0 V"
                    TextWrapping="Wrap" />
         <StatusBar Grid.Row="1"
                    Height="27"

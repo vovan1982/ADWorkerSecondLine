@@ -942,7 +942,7 @@ namespace ADWorkerSecondLine
             {
                 using (UserPrincipal oUserPrincipal = UserPrincipal.FindByIdentity(_principalContext, IdentityType.SamAccountName, ((User)listFindedUsers.SelectedItem).Login))
                 {
-                    oUserPrincipal.SetPassword("al*12345");
+                    oUserPrincipal.SetPassword("vl*12345");
                     oUserPrincipal.Save();
                     oUserPrincipal.ExpirePasswordNow();
                     oUserPrincipal.Save();
@@ -954,7 +954,7 @@ namespace ADWorkerSecondLine
                 return;
             }
             btUpdateUserData_Click(sender, e);
-            MessageBox.Show("Пароль сброшен на стандартный:\r\nal*12345");
+            MessageBox.Show("Пароль сброшен на стандартный:\r\nvl*12345");
         }
         // Начата кнопка отключения включения учетной записи пользователя
         private void btDisableEnableUser_Click(object sender, RoutedEventArgs e)
